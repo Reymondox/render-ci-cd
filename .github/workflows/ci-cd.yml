@@ -28,3 +28,13 @@ jobs:
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/render-ci-cd-test:latest
+
+  deploy-to-render:
+    needs: build-and-push-docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Render
+        run: |
+          curl -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys" \
+          -H "Accept: application/json" \
+          -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}"
