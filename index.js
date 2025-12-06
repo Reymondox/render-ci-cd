@@ -12,5 +12,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Aplicación ejecutandose en http://localhost:${port}`)
+    console.log(`Aplicación ejecutandose en: http://localhost:${port}`)
 })
